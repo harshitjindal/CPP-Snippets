@@ -56,6 +56,18 @@ void deleteLastNode(Node** HEAD) {
 	it-> Next = NULL;
 }
 
+Node* reverseLinkedList(Node** HEAD) {
+	Node* it = *HEAD;
+	Node* prev = NULL;
+	while(it!=NULL) {
+		Node* nextNode = it->Next;
+		it->Next = prev;
+		prev = it;
+		it = nextNode;
+	}
+	return prev;
+}
+
 void printLinkedList(Node** HEAD) {
 	Node* it = *HEAD;
 	while (it != NULL) {
@@ -73,34 +85,38 @@ int main() {
 	insertNodeAtEnd(&HEAD, 2);
 	insertNodeAtEnd(&HEAD, 7);
 	printLinkedList(&HEAD);
-	
+
 	deleteLastNode(&HEAD);
 	printLinkedList(&HEAD);
-	
+
 	insertNodeAtBeginning(&HEAD, 100);
 	printLinkedList(&HEAD);
-	
+
 	deleteLastNode(&HEAD);
 	deleteLastNode(&HEAD);
 	printLinkedList(&HEAD);
-	
+
 	deleteLastNode(&HEAD);
 	printLinkedList(&HEAD);
-	
+
 	insertNodeAtBeginning(&HEAD, 25);
 	printLinkedList(&HEAD);
-	
+
 	cout << "----------" << endl;
 	insertNodeAtBeginning(&HEAD, 100);
 	insertNodeAtBeginning(&HEAD, 50);
 	insertNodeAtEnd(&HEAD, 700);
 	insertNodeAtEnd(&HEAD, 750);
 	printLinkedList(&HEAD);
-	
+
 	deleteNodeAtIndex(&HEAD, 2);
 	printLinkedList(&HEAD);
 	
-	deleteNodeAtIndex(&HEAD, 1);
+	insertNodeAtBeginning(&HEAD, 100);
+	insertNodeAtBeginning(&HEAD, 200);
+	insertNodeAtBeginning(&HEAD, 300);
+	printLinkedList(&HEAD);
+	HEAD = reverseLinkedList(&HEAD);
 	printLinkedList(&HEAD);
 	
 	return 0;
