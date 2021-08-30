@@ -12,6 +12,13 @@ public:
 	}
 };
 
+void insertNodeAtBeginning(Node** HEAD, int data) {
+	if (*HEAD == NULL) { *HEAD = new Node(data); return; }
+	Node* temp = new Node(data);
+	temp->Next = *HEAD;
+	*HEAD = temp;
+}
+
 void insertNodeAtEnd(Node** HEAD, int data) {
 	Node* it = *HEAD;
 	if (*HEAD == NULL) { *HEAD = new Node(data); }
@@ -49,10 +56,19 @@ int main() {
 	printLinkedList(&HEAD);
 	
 	deleteLastNode(&HEAD);
+	printLinkedList(&HEAD);
+	
+	insertNodeAtBeginning(&HEAD, 100);
+	printLinkedList(&HEAD);
+	
+	deleteLastNode(&HEAD);
 	deleteLastNode(&HEAD);
 	printLinkedList(&HEAD);
 	
 	deleteLastNode(&HEAD);
+	printLinkedList(&HEAD);
+	
+	insertNodeAtBeginning(&HEAD, 25);
 	printLinkedList(&HEAD);
 	
 	return 0;
