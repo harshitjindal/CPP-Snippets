@@ -19,6 +19,10 @@ void insertNodeAtBeginning(Node** HEAD, int data) {
 	*HEAD = temp;
 }
 
+void insertNodeAtIndex(Node** HEAD, int idx, int data) {
+	// TODO
+}
+
 void insertNodeAtEnd(Node** HEAD, int data) {
 	Node* it = *HEAD;
 	if (*HEAD == NULL) { *HEAD = new Node(data); }
@@ -26,6 +30,21 @@ void insertNodeAtEnd(Node** HEAD, int data) {
 		while (it->Next != NULL) { it = it->Next; }
 		it->Next = new Node(data);
 	}
+}
+
+void deleteNodeAtIndex(Node** HEAD, int idx) {
+	if (*HEAD == NULL) return;
+	Node* it = *HEAD;
+	Node* forward = it->Next;
+	if (idx == 0) { *HEAD = it->Next; return; }
+	for (int i = 0; i < idx-1; ++i) {
+		if (forward == NULL) { it->Next = NULL; return; }
+		it = it->Next;
+		forward = forward->Next;
+	}
+	if (forward == NULL) { it->Next = NULL; return; }
+	it->Next = forward->Next;
+	forward->Next = NULL;
 }
 
 void deleteLastNode(Node** HEAD) {
@@ -69,6 +88,19 @@ int main() {
 	printLinkedList(&HEAD);
 	
 	insertNodeAtBeginning(&HEAD, 25);
+	printLinkedList(&HEAD);
+	
+	cout << "----------" << endl;
+	insertNodeAtBeginning(&HEAD, 100);
+	insertNodeAtBeginning(&HEAD, 50);
+	insertNodeAtEnd(&HEAD, 700);
+	insertNodeAtEnd(&HEAD, 750);
+	printLinkedList(&HEAD);
+	
+	deleteNodeAtIndex(&HEAD, 2);
+	printLinkedList(&HEAD);
+	
+	deleteNodeAtIndex(&HEAD, 1);
 	printLinkedList(&HEAD);
 	
 	return 0;
