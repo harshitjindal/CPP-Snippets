@@ -21,6 +21,30 @@ void insertNodeAtBeginning(Node** HEAD, int data) {
 
 void insertNodeAtIndex(Node** HEAD, int idx, int data) {
 	// TODO
+	Node* it = *HEAD;
+	Node* prev = NULL;
+	
+	if (*HEAD == NULL || idx == 0) {
+		if (idx == 0) {
+			Node* temp = new Node(data);
+			temp->Next = *HEAD;
+			*HEAD = temp;
+			return;
+		} else return;
+	}
+	
+	for (int i = 0; i < idx; ++i) {
+		if(it != NULL) {
+			prev = it;
+			it = it->Next;
+		} else {
+			return;
+		}
+	}
+	
+	Node* temp = new Node(data);
+	temp->Next = it;
+	prev->Next = temp;
 }
 
 void insertNodeAtEnd(Node** HEAD, int data) {
@@ -31,6 +55,7 @@ void insertNodeAtEnd(Node** HEAD, int data) {
 		it->Next = new Node(data);
 	}
 }
+
 
 void deleteNodeAtIndex(Node** HEAD, int idx) {
 	if (*HEAD == NULL) return;
@@ -81,43 +106,50 @@ int main() {
 	
 	Node* HEAD = NULL;
 	
-	insertNodeAtEnd(&HEAD, 1);
-	insertNodeAtEnd(&HEAD, 2);
-	insertNodeAtEnd(&HEAD, 7);
-	printLinkedList(&HEAD);
-
-	deleteLastNode(&HEAD);
-	printLinkedList(&HEAD);
-
-	insertNodeAtBeginning(&HEAD, 100);
-	printLinkedList(&HEAD);
-
-	deleteLastNode(&HEAD);
-	deleteLastNode(&HEAD);
-	printLinkedList(&HEAD);
-
-	deleteLastNode(&HEAD);
-	printLinkedList(&HEAD);
-
-	insertNodeAtBeginning(&HEAD, 25);
-	printLinkedList(&HEAD);
-
-	cout << "----------" << endl;
-	insertNodeAtBeginning(&HEAD, 100);
-	insertNodeAtBeginning(&HEAD, 50);
-	insertNodeAtEnd(&HEAD, 700);
-	insertNodeAtEnd(&HEAD, 750);
-	printLinkedList(&HEAD);
-
-	deleteNodeAtIndex(&HEAD, 2);
-	printLinkedList(&HEAD);
+//    insertNodeAtEnd(&HEAD, 1);
+//    insertNodeAtEnd(&HEAD, 2);
+//    insertNodeAtEnd(&HEAD, 7);
+//    printLinkedList(&HEAD);
+//
+//    deleteLastNode(&HEAD);
+//    printLinkedList(&HEAD);
+//
+//    insertNodeAtBeginning(&HEAD, 100);
+//    printLinkedList(&HEAD);
+//
+//    deleteLastNode(&HEAD);
+//    deleteLastNode(&HEAD);
+//    printLinkedList(&HEAD);
+//
+//    deleteLastNode(&HEAD);
+//    printLinkedList(&HEAD);
+//
+//    insertNodeAtBeginning(&HEAD, 25);
+//    printLinkedList(&HEAD);
+//
+//    cout << "----------" << endl;
+//    insertNodeAtBeginning(&HEAD, 100);
+//    insertNodeAtBeginning(&HEAD, 50);
+//    insertNodeAtEnd(&HEAD, 700);
+//    insertNodeAtEnd(&HEAD, 750);
+//    printLinkedList(&HEAD);
+//
+//    deleteNodeAtIndex(&HEAD, 2);
+//    printLinkedList(&HEAD);
+//
+//    insertNodeAtBeginning(&HEAD, 100);
+//    insertNodeAtBeginning(&HEAD, 200);
+//    insertNodeAtBeginning(&HEAD, 300);
+//    printLinkedList(&HEAD);
+//    HEAD = reverseLinkedList(&HEAD);
+//    printLinkedList(&HEAD);
 	
 	insertNodeAtBeginning(&HEAD, 100);
 	insertNodeAtBeginning(&HEAD, 200);
 	insertNodeAtBeginning(&HEAD, 300);
 	printLinkedList(&HEAD);
-	HEAD = reverseLinkedList(&HEAD);
-	printLinkedList(&HEAD);
 	
+	insertNodeAtIndex(&HEAD, 2, 50);
+	printLinkedList(&HEAD);
 	return 0;
 }
